@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:useLevel="false"
+    >
+    <solid android:color="#377dff"/>
+    <padding android:left="1dip"
+        android:right="1dip"
+        android:bottom="1dip"/>
+
+    <stroke android:width="2dip"
+        android:color="#377dff"
+        />
+    <!--边框宽度-->
+    <size android:width="10dip"
+        android:height="10dip"
+        />
+    <!--边框-->
+    <corners android:topLeftRadius="0dip"
+        android:topRightRadius="0dip"
+        android:bottomRightRadius="0dip"
+        android:bottomLeftRadius="0dip" />
+
+
+
+</shape>

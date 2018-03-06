@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+       <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#00c8ff</item>
+        <item name="colorPrimaryDark">#979797</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#ffff</item>
+        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
+    </style>
+
+</resources>

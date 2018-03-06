@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <cn.adeerlongneck.app.smartschoolapp.Utility.ClearEditText
+            android:maxLines="1"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:textColorHint="#ffff"
+            android:hint="请输入学号后选择登录方式"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:id="@+id/ed_account"
+            android:layout_centerHorizontal="true"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/MyEditText"
+            />
+
+        android:layout_height="match_parent">
+        <cn.adeerlongneck.app.smartschoolapp.Utility.ClearEditText
+            android:maxLines="1"
+            android:theme="@style/MyEditText"
+            android:textColorHint="#ffff"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:layout_marginTop="16dp"
+            android:id="@+id/ed_password"
+            android:layout_below="@+id/ed_account"
+            android:layout_marginRight="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"  />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/ed_password"
+            android:text="学 号 登  陆"
+            android:textColor="#FFFF"
+            android:background="@drawable/button_press1"
+            android:id="@+id/login_id"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:textColor="#7c7676"
+            android:text="刷 脸 登 陆"
+            android:background="@drawable/button_style2"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/login_id"
+            android:id="@+id/login_face"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            />
+        <ImageView
+            android:src="@drawable/ic_wen"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignRight="@+id/login_id"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/login_face"
+
+
+
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+
+
+
+

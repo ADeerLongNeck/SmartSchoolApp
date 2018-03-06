@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">啾咪</string>
+    <drawable name="clr_normal">#00ffffff</drawable>
+    <drawable name="clr_pressed">#b7991f</drawable>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_home">首页</string>
+    <string name="title_dashboard">功能</string>
+    <string name="title_notifications">我的</string>
+    <string name="ip1">172.16.219.102</string>
+</resources>
