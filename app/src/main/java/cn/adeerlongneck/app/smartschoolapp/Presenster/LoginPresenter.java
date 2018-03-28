@@ -51,25 +51,20 @@ public class LoginPresenter extends BasePresenter{
             }
         });
     httpUtil.sendPostHttp("http://192.168.6.46/isRegister2.php",prama1);
-
-
-
     }
-    public void Login(String account,String password){
 
+    public void login(String account,String password){
         prama2= new HashMap<String,String>();
         prama2.put("stuid",account);
         prama2.put("password",password);
-
         HttpUtil httpUtil=new HttpUtil(new HttpUtil.HttpResponse() {
             @Override
             public void onSuccess(Object object) {
                 String res = object.toString();
-
                 if (res.equals("1")) {
+                    //TODO 判断是否为教师，
                     loginView.hideDialog();
                     loginView.loginSuccess();
-
                 }
                 if (res.equals("0")) {
                     loginView.hideDialog();
@@ -80,21 +75,15 @@ public class LoginPresenter extends BasePresenter{
                     loginView.hideDialog();
                     loginView.loginFail("登陆失败，请检查账号密码");
                 }
-
-
             }
-
             @Override
             public void onFail(String error) {
-
+                loginView.loginFail("登陆失败，"+"错误码:"+error);
+                loginView.hideDialog();
             }
         });
-        httpUtil.sendPostHttp("http://192.168.6.46/login.php",prama2);
-
+        httpUtil.sendPostHttp("http://www.adeerlongneck.cn/smartschool/login.php",prama2);
     }
-
-
-
 
 
 

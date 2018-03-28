@@ -2,14 +2,25 @@ package cn.adeerlongneck.app.smartschoolapp.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,6 +47,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
     Button bt_startface;
     Button bt_yanzhengma;
     EditText ed_yzm;
+    ImageView img;
+    private Uri imageUri;
+    public static final int TAKE_PHOTO=1;
     Context context;
     ProgressDialog progressDialog;
     RegisterPresenter registerPresenter;
@@ -62,13 +76,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        registerPresenter =new RegisterPresenter(this);
+        registerPresenter =new RegisterPresenter(this,this);
         ini();
 
     }
     public void ini(){
         BmobSMS.initialize(this,"7326a6be68c5fe21196c69385f87d65b");//应用id
-
+    img=(ImageView)findViewById(R.id.img);
         ed_stuid=(EditText)findViewById(R.id.ed_stuid);
         ed_password=(EditText)findViewById(R.id.ed_password);
         ed_realname=(EditText)findViewById(R.id.ed_realname);
@@ -79,7 +93,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
         bt_startface.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                verYZM(ed_phonenumber.getText().toString(),ed_yzm.getText().toString());
+                sendPhoto();
+             //  verYZM(ed_phonenumber.getText().toString(),ed_yzm.getText().toString());
             }
         });
         bt_yanzhengma.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +123,63 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
 
 
     }
+    /**
+    * 获取人脸图片
+     *
+    * */
+    public void sendPhoto(){
+
+
+
+
+        File outputImage=new File(this.getExternalCacheDir(),ed_stuid.getText().toString()+"-image.jpg");
+        try{
+            if (outputImage.exists()){
+                outputImage.delete();
+            }
+            outputImage.createNewFile();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        if (Build.VERSION.SDK_INT>=24){
+            imageUri= FileProvider.getUriForFile(this,"cn.adeerlongneck.app.smartschoolapp.fileprovider",outputImage);
+
+        }else {
+            imageUri = Uri.fromFile(outputImage);
+        }
+        Intent intent =new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+
+        startActivityForResult(intent,TAKE_PHOTO);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case TAKE_PHOTO:
+                if(requestCode==1){
+                    try{
+
+                        Bitmap bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(imageUri));
+                        img.setImageBitmap(bitmap);
+                        String ui=imageUri.toString();
+                  registerPresenter.dealPhoto(bitmap);
+
+
+                    }catch (FileNotFoundException e){
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+    //////////////////
 
     @Override
     public void showDialog() {
@@ -132,6 +204,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
 
     @Override
     public void sendYZM() {
+        Log.i("bmob", "222222222222222222");//用于查询本次短信发送详情
         final MyCountDownTimer   myCountDownTimer = new MyCountDownTimer(60000,1000,bt_yanzhengma);
         SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String sendTime = format.format(new Date());
@@ -144,6 +217,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
                     Toast.makeText(RegisterActivity.this,"验证码发送成功！",Toast.LENGTH_SHORT).show();
 
                     myCountDownTimer.start();
+
+
+
                     Log.i("bmob", "短信id："+smsId);//用于查询本次短信发送详情
                 }
             }

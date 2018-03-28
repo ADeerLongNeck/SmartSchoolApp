@@ -50,28 +50,7 @@ public class MainActivity extends AppCompatActivity implements  ViewPager.OnPage
         super.onActivityResult(requestCode, resultCode, data);
 
         Log.d("11111111111","1111111111111");
-        switch (resultCode) {
-            case SDKConfig.AUTH_SUCCESS:
-                String openid = Cache.getCached(MainActivity.this, SDKConfig.KEY_OPENID);
 
-                String userInfo = Cache.getCached(MainActivity.this, SDKConfig.KEY_APPINFO);
-                Toast.makeText(MainActivity.this, "授权成功", Toast.LENGTH_SHORT).show();
-                break;
-            case SDKConfig.LOGINSUCCESS:
-
-                openid = Cache.getCached(MainActivity.this, SDKConfig.KEY_OPENID);
-
-                userInfo = Cache.getCached(MainActivity.this, SDKConfig.KEY_APPINFO);
-
-                Intent intent =new Intent(this,MainMenuActivity.class);
-                startActivity(intent);
-                Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                break;
-
-            default:
-                Toast.makeText(MainActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
-                break;
-        }
     }
 
 

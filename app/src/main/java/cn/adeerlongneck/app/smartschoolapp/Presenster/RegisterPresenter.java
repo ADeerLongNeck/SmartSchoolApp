@@ -1,8 +1,26 @@
 package cn.adeerlongneck.app.smartschoolapp.Presenster;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+
+import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,53 +34,67 @@ import cn.bmob.newsmssdk.BmobSMS;
 import cn.bmob.newsmssdk.exception.BmobException;
 import cn.bmob.newsmssdk.listener.RequestSMSCodeListener;
 
+
+
 /**
  * Created by 长脖鹿 on 2017/12/16.
  */
 
 public class RegisterPresenter {
     Map<String,String> prama;
+    String stuid;
     int ERRORCODE=4;
 RegisterActivityView registerActivityView;
- public RegisterPresenter(RegisterActivityView registerActivityView){
-this.registerActivityView=registerActivityView;
+Context context;
 
+
+    public RegisterPresenter(RegisterActivityView registerActivityView,Context context){
+this.registerActivityView=registerActivityView;
+this.context=context;
  }
 
+
+    /**
+     * 判断是否注册
+     * @param stuid
+     * @param phonenumber
+     * @return
+     */
     public int isRegister(String stuid, final String phonenumber){
+
+
+     Log.d("222","jinru");
+
         prama = new HashMap<String, String>();
         prama.put("stuid",stuid);
-        prama.put("phonenumber",phonenumber);
-
+        prama.put("phone",phonenumber);
+        this.stuid=stuid;
         HttpUtil httpUtil =new HttpUtil(new HttpUtil.HttpResponse() {
             @Override
             public void onSuccess(Object object) {
                 //取得服务器返回的数据
                 String respone=object.toString();
-                if(respone.equals("1")){
+                Log.d("1111111"+respone+"1111111","1111111"+respone);
+                String respones=respone.substring(0,1);
+                if(respones.equals("1")){
                     //学号已经被注册了
-
-                    Log.d("2222222222222","1111111111");
-
                     ERRORCODE=1;
                 }
-                if(respone.equals("2")){
+                if(respones.equals("2")){
                     //手机号号已经被注册了
-
-                    Log.d("2222222222222","2222222222222");
                     ERRORCODE=2;
                 }
-                if(respone.equals("3")){
+                if(respones.equals("3")){
                     //都被注册了
 
                     ERRORCODE=3;
-                    Log.d("2222222222222","33333333333333");
                 }
-                if(respone.equals("0")){
+                if(respones.equals("0")){
+                    Log.d("2224","error");
                     registerActivityView.sendYZM();
                     //没有注册，可以进行下一步
                     ERRORCODE=0;
-                    Log.d("2222222222222","000000000000000000000");
+
                 }
 
             }
@@ -72,7 +104,7 @@ this.registerActivityView=registerActivityView;
                 Log.d("44444444444444444444",error);
             }
         });
-        httpUtil.sendPostHttp("http://172.16.219.102/isRegister.php",prama);
+        httpUtil.sendPostHttp("http://www.adeerlongneck.cn/smartschool/isregister.php",prama);
         return ERRORCODE;
     }
 
@@ -83,6 +115,108 @@ this.registerActivityView=registerActivityView;
 
 
 
+    /**
+     * 入口
+     * @param bitmap
+     */
+    public void  dealPhoto(Bitmap bitmap){
+     encodeImage(bitmap);
 
 
-}
+
+
+    }
+
+    /**
+     * 图片转base64
+     * @param
+     * @return
+     */
+
+    public static Bitmap transform_Cut(byte[] rawImage){
+        int width,height;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true; // 只获取图片的大小信息，而不是将整张图片载入在内存中，避免内存溢出
+        BitmapFactory.decodeByteArray(rawImage, 0, rawImage.length, options);
+        options.inJustDecodeBounds = false; // 计算好压缩比例后，这次可以去加载原图了
+        if (options.outWidth<1000){
+            options.inSampleSize = 1;
+        }else if (options.outWidth<2400) {
+            options.inSampleSize = 2; // 设置为刚才计算的压缩比例
+        }else{
+            options.inSampleSize = 4;
+        }
+        options.inPreferredConfig = Bitmap.Config.RGB_565;//该模式是默认的,可不设
+        options.inPurgeable = true;// 同时设置才会有效
+        options.inInputShareable = true;//。当系统内存不够时候图片自动被回收
+        Bitmap bm = BitmapFactory.decodeByteArray(rawImage, 0, rawImage.length, options); // 解码文件
+        //Log.d("bm的width",bm.getWidth()+"");
+        //Log.d("bm的height",bm.getHeight()+"");
+        width=bm.getWidth();
+        height=bm.getHeight();
+        double x=(float)1/(float)4;
+        double y=(float)2/(float)9;
+        double _width=(float)1/(float)2;
+        double _height=(float)4/(float)7;
+        Bitmap bmp= Bitmap.createBitmap(bm,(int)(width*x),(int)(height*y),(int)(width*_width),(int)(height*_height));
+
+        return  bmp;
+    }
+    public Bitmap encodeImage(Bitmap image) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 90;
+        while (baos.toByteArray().length / 1024 > 100) { // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
+            baos.reset(); // 重置baos即清空baos
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10;// 每次都减少10
+            Log.d("baos大小",baos.toByteArray().length/1024+"");
+            Log.d("options大小",options+"");
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
+        bitmapToBase64(bitmap);
+        return bitmap;
+    }
+
+
+    public String bitmapToBase64(Bitmap bitmap) {
+        String result = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            if (bitmap != null) {
+                baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                baos.flush();
+                baos.close();
+                byte[] bitmapBytes = baos.toByteArray();
+
+                encodeImage(transform_Cut(bitmapBytes)) ;
+
+
+
+                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
+            }
+        } catch (IOException e) {
+            return "";
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.flush();
+                    baos.close();
+                }
+            } catch (IOException e) {
+                return "";
+            }
+        }
+        Log.d("22",result);
+        return result;
+    }
+
+
+
+    }
+
+
+
+

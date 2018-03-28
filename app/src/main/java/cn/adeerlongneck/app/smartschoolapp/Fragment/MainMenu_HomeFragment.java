@@ -26,9 +26,6 @@ import cn.adeerlongneck.app.smartschoolapp.R;
 
 public class MainMenu_HomeFragment extends Fragment{
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -43,7 +40,7 @@ public class MainMenu_HomeFragment extends Fragment{
     WebView webView=(WebView)mview.findViewById(R.id.webView1);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://tianqi.moji.com/weather/china/shandong/licheng-district");
+        webView.loadUrl("https://www.adeerlongneck.cn");
 
    }
 

@@ -31,7 +31,7 @@ import cn.adeerlongneck.app.smartschoolapp.View.LoginView;
  */
 
 public class LoginFragment extends Fragment implements LoginView {
-    Button bt_login_face;
+    Button bt_forget;
     Button bt_login_id;
     EditText ed_account;
     EditText ed_password;
@@ -51,54 +51,62 @@ public class LoginFragment extends Fragment implements LoginView {
         ed_account=(EditText) view.findViewById(R.id.ed_account);
         ed_password=(EditText) view.findViewById(R.id.ed_password);
         bt_login_id=(Button) view.findViewById(R.id.login_id);
-        bt_login_face=(Button)view.findViewById(R.id.login_face);
+        bt_forget=(Button)view.findViewById(R.id.bt_forget);
         bt_login_id.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {idLogin(IdLoginINDEX);}});
-        bt_login_face.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+          cheaInput(ed_account.getText().toString(),ed_password.getText().toString());
+
+
+            }});
+        bt_forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent =new Intent(getActivity(),MainMenuActivity.class);
+                startActivity(intent);
 
-              //  faceLogin();
-               loginSuccess();
+//忘记密码啦啦啦啦啦
             }});
-        hideText();
+
 
     }
-    private void idLogin(int i){
-        if (i==1){
 
-            if (ed_account.getText().toString().isEmpty()){
 
-                Toast.makeText(getActivity(),"请输入学号后继续",Toast.LENGTH_SHORT).show();
-                //学号为空
+    /*
+    * 号密登陆
+    *
+    *
 
-            }else {
-                // p
+    * */
 
-                loginPresenter.isRegister(ed_account.getText().toString(),1);
-                showDialog();
-            }
-        }
-        if(i==2){
-            if (ed_account.getText().toString().isEmpty()){
-                Toast.makeText(getActivity(),"请输入学号后继续",Toast.LENGTH_SHORT).show();
-                //学号为空
-            }
-            if (ed_password.getText().toString().isEmpty())
-            {
-                Toast.makeText(getActivity(),"请输入密码后继续",Toast.LENGTH_SHORT).show();
-                //密码为空
-            }
-            else {
 
-            loginPresenter.Login(ed_account.getText().toString(),ed_password.getText().toString());
-                showDialog();
-                //p
-            }
-        }
+    private void cheaInput(String stuid,String password){
+if(stuid.isEmpty()){
+    Toast.makeText(getActivity(),"请填写账号",Toast.LENGTH_SHORT).show();
+}
+if(password.isEmpty()){
+    Toast.makeText(getActivity(),"请填写密码",Toast.LENGTH_SHORT).show();
+}
+else   idLogin();
     }
+
+
+
+    private void idLogin(){
+                loginPresenter.login(ed_account.getText().toString(),ed_password.getText().toString());
+                showDialog();
+    }
+
+
+    /*
+    *
+    * 人脸登陆，，暂时取消该功能
+    * */
     private void faceLogin(){
+        //TODO
+        startFaceLogin();
+
+
         if (ed_account.getText().toString().isEmpty()){
             Toast.makeText(getActivity(),"请输入学号后继续",Toast.LENGTH_SHORT).show();
             //学号为空
@@ -111,7 +119,15 @@ public class LoginFragment extends Fragment implements LoginView {
 
 
 
-
+    /*
+    *
+    *
+    * 以下为接口实现
+    *
+    *
+    *
+    *
+    * */
     @Override
     public void hideText() {
         ed_password.setVisibility(View.INVISIBLE);
