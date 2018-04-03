@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
@@ -33,7 +34,13 @@ import cn.adeerlongneck.app.smartschoolapp.View.RegisterActivityView;
 import cn.bmob.newsmssdk.BmobSMS;
 import cn.bmob.newsmssdk.exception.BmobException;
 import cn.bmob.newsmssdk.listener.RequestSMSCodeListener;
-
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 
 /**
@@ -120,8 +127,8 @@ this.context=context;
      * @param bitmap
      */
     public void  dealPhoto(Bitmap bitmap){
-     encodeImage(bitmap);
-
+String a=     bitmapToBase64(bitmapdeal(bitmap));
+Log.d("123",a);
 
 
 
@@ -162,7 +169,14 @@ this.context=context;
 
         return  bmp;
     }
+
+    /**
+     * 压缩图片
+     * @param image
+     * @return
+     */
     public Bitmap encodeImage(Bitmap image) {
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 90;
@@ -177,6 +191,45 @@ this.context=context;
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
         bitmapToBase64(bitmap);
         return bitmap;
+
+    }
+
+
+    /**
+     * 裁剪压缩完的图片
+     * @param bitmap
+     * @return
+     */
+
+    public Bitmap bitmapdeal(Bitmap bitmap) {
+        String result = null;
+        Bitmap bitmapok = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            if (bitmap != null) {
+                baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                baos.flush();
+                baos.close();
+                byte[] bitmapBytes = baos.toByteArray();
+
+         bitmapok  = encodeImage(transform_Cut(bitmapBytes)) ;
+
+            }
+        } catch (IOException e) {
+
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.flush();
+                    baos.close();
+                }
+            } catch (IOException e) {
+
+            }
+        }
+//        Log.d("22",result);
+        return bitmapok;
     }
 
 
@@ -190,10 +243,6 @@ this.context=context;
                 baos.flush();
                 baos.close();
                 byte[] bitmapBytes = baos.toByteArray();
-
-                encodeImage(transform_Cut(bitmapBytes)) ;
-
-
 
                 result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
             }
@@ -214,8 +263,94 @@ this.context=context;
     }
 
 
+    /**
+     * 注册
+     *
+     * @param
+     */
+
+
+    public  void register(Map<String,String> map){
+     //   Map<String,String> map =new HashMap<>();
+//        map.put("stuid",user.getStuid());
+//        map.put("realname",user.getRealname());
+//        map.put("password",user.getPassword());
+//        map.put("phone",user.getPhonenumber());
+
+        HttpUtil httpUtil = new HttpUtil(new HttpUtil.HttpResponse() {
+            @Override
+            public void onSuccess(Object object) {
+                String respone=object.toString();
+                String respones=respone.substring(0,1);
+                Log.d("==",respones);
+                    if(respones.equals("0")){
+
+                        registerActivityView.showTx("注册成功");
+                    }
+else {
+                        registerActivityView.showTx("注册失败");
+                    }
+
+
+            }
+
+            @Override
+            public void onFail(String error) {
+
+            }
+        });
+        httpUtil .sendPostHttp("http://www.adeerlongneck.cn/smartschool/register.php",map);
+
+
+
+
+
+
 
     }
+
+
+
+/**
+ * 上传图片
+ */
+public void upImage(Bitmap bm) {
+
+
+    OkHttpClient client=new OkHttpClient();
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+    bm.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+
+    MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM)
+            .addFormDataPart("img_1","1.jpg", RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray()))
+            ;
+    //有多个图片就用for循环添加即可
+
+    MultipartBody build = builder.build();
+
+    okhttp3.Request bi = new okhttp3.Request.Builder()
+            .url("http://www.adeerlongneck.cn/you/ii.php")
+            .post(build)
+            .build();
+
+
+
+    client.newCall(bi).enqueue(new Callback() {
+        @Override
+        public void onFailure(Call call, IOException e) {
+            Log.i("TAG", "onFailure: 失败");
+        }
+
+        @Override
+        public void onResponse(Call call, okhttp3.Response response) throws IOException {
+            Log.i("TAG", "onResponse: " + response.body().string());
+            //提交成功处理结果....
+        }
+    });
+}
+
+}
 
 
 

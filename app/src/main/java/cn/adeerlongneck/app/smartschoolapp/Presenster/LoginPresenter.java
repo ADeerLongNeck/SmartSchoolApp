@@ -53,7 +53,7 @@ public class LoginPresenter extends BasePresenter{
     httpUtil.sendPostHttp("http://192.168.6.46/isRegister2.php",prama1);
     }
 
-    public void login(String account,String password){
+    public void login(final String account, String password){
         prama2= new HashMap<String,String>();
         prama2.put("stuid",account);
         prama2.put("password",password);
@@ -63,6 +63,9 @@ public class LoginPresenter extends BasePresenter{
                 String res = object.toString();
                 if (res.equals("1")) {
                     //TODO 判断是否为教师，
+
+                   getUserInfo(account);
+
                     loginView.hideDialog();
                     loginView.loginSuccess();
                 }
@@ -84,7 +87,28 @@ public class LoginPresenter extends BasePresenter{
         });
         httpUtil.sendPostHttp("http://www.adeerlongneck.cn/smartschool/login.php",prama2);
     }
+public  void getUserInfo(String stuid){
+        Map<String,String> map =new HashMap<>();
+        map.put("stuid",stuid);
+        HttpUtil httpUtil =new HttpUtil(new HttpUtil.HttpResponse() {
+            @Override
+            public void onSuccess(Object object) {
 
+                Log.d(object.toString(),"111111-------");
+
+            }
+
+            @Override
+            public void onFail(String error) {
+
+            }
+        });
+
+        httpUtil .sendPostHttp("http://www.adeerlongneck.cn/smartschool/getuserinfo.php",map);
+
+
+
+}
 
 
 

@@ -50,11 +50,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
     ImageView img;
     private Uri imageUri;
     public static final int TAKE_PHOTO=1;
-    Context context;
     ProgressDialog progressDialog;
     RegisterPresenter registerPresenter;
     int ERRORCODE=0;
     String YZM;
+    userModel user1;
 
     private void verYZM(String phonenumber,String sms){
         BmobSMS.verifySmsCode(this,phonenumber, sms, new VerifySMSCodeListener() {
@@ -63,6 +63,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
                 // TODO Auto-generated method stub
                 if(ex==null){//短信验证码已验证成功
                     Log.i("bmob", "验证通过");
+
+                    sendPhoto();
+
                     Toast.makeText(RegisterActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
                 }else{
                     Log.i("bmob", "验证失败：code ="+ex.getErrorCode()+",msg = "+ex.getLocalizedMessage());
@@ -82,19 +85,22 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
     }
     public void ini(){
         BmobSMS.initialize(this,"7326a6be68c5fe21196c69385f87d65b");//应用id
-    img=(ImageView)findViewById(R.id.img);
+        img=(ImageView)findViewById(R.id.img);
+
         ed_stuid=(EditText)findViewById(R.id.ed_stuid);
         ed_password=(EditText)findViewById(R.id.ed_password);
         ed_realname=(EditText)findViewById(R.id.ed_realname);
         ed_phonenumber=(EditText)findViewById(R.id.ed_phonenumber);
         bt_yanzhengma=(Button)findViewById(R.id.bt_yanzhengma);
         bt_startface=(Button)findViewById(R.id.bt_startface);
+        bt_startface.setEnabled(false);
+        bt_startface.setBackgroundResource(R.drawable.shapeclick);
         ed_yzm=(EditText)findViewById(R.id.ed_yzm);
         bt_startface.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendPhoto();
-             //  verYZM(ed_phonenumber.getText().toString(),ed_yzm.getText().toString());
+
+           verYZM(ed_phonenumber.getText().toString(),ed_yzm.getText().toString());
             }
         });
         bt_yanzhengma.setOnClickListener(new View.OnClickListener() {
@@ -111,11 +117,19 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
 
 
     public void getData(){
-        userModel muser = null;
-        muser.setStuid(ed_stuid.getText().toString());
-        muser.setPassword(ed_password.getText().toString());
-        muser.setRealname(ed_realname.getText().toString());
-        muser.setPhonenumber(ed_phonenumber.getText().toString());
+//        userModel muser = null;
+//        muser.setStuid(ed_stuid.getText().toString());
+//        muser.setPassword(ed_password.getText().toString());
+//        muser.setRealname(ed_realname.getText().toString());
+//        muser.setPhonenumber(ed_phonenumber.getText().toString());
+        Map<String,String> map=new HashMap<>();
+        map.put("stuid",ed_stuid.getText().toString());
+        map.put("realname",ed_realname.getText().toString());
+        map.put("password",ed_password.getText().toString());
+        map.put("phone",ed_phonenumber.getText().toString());
+
+        registerPresenter.register(map);
+
     }
     public void getYzMa(String phonenumber){
 
@@ -163,9 +177,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
 
                         Bitmap bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(imageUri));
                         img.setImageBitmap(bitmap);
-                        String ui=imageUri.toString();
-                  registerPresenter.dealPhoto(bitmap);
-
+                       registerPresenter.upImage(bitmap);
+                        getData();
 
                     }catch (FileNotFoundException e){
                         e.printStackTrace();
@@ -218,12 +231,18 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
 
                     myCountDownTimer.start();
 
-
+                    bt_startface.setEnabled(true);
+                    bt_startface.setBackgroundResource(R.drawable.bt_style_fang);
 
                     Log.i("bmob", "短信id："+smsId);//用于查询本次短信发送详情
                 }
             }
         });
 
+    }
+
+    @Override
+    public void showTx(String string) {
+        Toast.makeText(RegisterActivity.this, string,Toast.LENGTH_SHORT).show();
     }
 }

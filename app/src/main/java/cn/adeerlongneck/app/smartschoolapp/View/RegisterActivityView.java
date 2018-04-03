@@ -8,5 +8,6 @@ public interface RegisterActivityView {
     void showDialog();
     void hideDialog();
     void sendYZM();
+    void showTx(String string);
 
 }
