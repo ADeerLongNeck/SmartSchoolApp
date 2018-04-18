@@ -7,8 +7,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import cn.adeerlongneck.app.smartschoolapp.MyApplication;
 import cn.adeerlongneck.app.smartschoolapp.R;
 
 /**
@@ -17,7 +21,8 @@ import cn.adeerlongneck.app.smartschoolapp.R;
 
 public class MainMenu_MeFragment extends Fragment {
     LinearLayout linearLayout_kaquan;
-
+    TextView text_me;
+String name;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mainmenu_fragment_me, container, false);
@@ -30,9 +35,16 @@ public class MainMenu_MeFragment extends Fragment {
             }
         });
 
-
-
+    ini(view);
         return view;
+    }
+
+    public void ini(View view){
+        MyApplication application = (MyApplication)getActivity().getApplicationContext();
+        name= application.getName();
+        text_me=(TextView)view.findViewById(R.id.me_tx_name);
+        text_me.setText(name);
+
     }
 
 }

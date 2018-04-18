@@ -11,17 +11,38 @@
     <include layout="@layout/toolbar"></include>
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="6"
         >
+
         <TextView
-            android:layout_marginLeft="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:text="我的课程"
-            android:typeface="sans"
             android:textSize="20sp"
+            android:typeface="sans" />
+
+        <Button
+            android:id="@+id/ref"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="刷新"
+            android:textSize="10sp"
+
+            />
+
+        <Button
+            android:id="@+id/addcourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="添加课程"
+            android:textSize="10sp"
+
             />
 
     </LinearLayout>

@@ -14,20 +14,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/me_im_touxiang"
-            android:layout_marginLeft="16dp"
-           android:layout_centerVertical="true"
-            android:src="@drawable/ic_face"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
+
         <TextView
             android:textColor="#000000"
             android:id="@+id/me_tx_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADeerLOngNeck"
-            android:layout_toRightOf="@+id/me_im_touxiang"
+            android:text="*"
+
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             />
@@ -35,9 +29,9 @@
             android:id="@+id/me_tx_jianjie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这人懒的丫批，什么也没写"
+            android:text="Good Good Study,Day Day Up"
             android:layout_below="@+id/me_tx_name"
-            android:layout_toRightOf="@+id/me_im_touxiang"
+
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             />
@@ -183,20 +177,6 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="16dp"
-                        android:src="@drawable/ic_me_kaquan" />
-
-                    <TextView
-                        android:textColor="#000000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="30dp"
-                        android:text="12345" />
 
                 </LinearLayout>
 
@@ -238,20 +218,7 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="16dp"
-                        android:src="@drawable/ic_me_banji" />
 
-                    <TextView
-                        android:textColor="#000000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="30dp"
-                        android:text="12345" />
 
                 </LinearLayout>
 

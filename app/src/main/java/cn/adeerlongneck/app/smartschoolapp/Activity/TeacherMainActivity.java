@@ -14,12 +14,13 @@ import android.widget.TextView;
 import cn.adeerlongneck.app.smartschoolapp.Fragment.MainMenu_FunctionFragment;
 import cn.adeerlongneck.app.smartschoolapp.Fragment.MainMenu_HomeFragment;
 import cn.adeerlongneck.app.smartschoolapp.Fragment.MainMenu_MeFragment;
+import cn.adeerlongneck.app.smartschoolapp.Fragment.Teacher_FuctionFragment;
 import cn.adeerlongneck.app.smartschoolapp.R;
 
 public class TeacherMainActivity extends AppCompatActivity {
 
     MainMenu_HomeFragment fragment_home;
-    MainMenu_FunctionFragment fragment_function;
+    Teacher_FuctionFragment fragment_function;
     MainMenu_MeFragment fragment_me;
     private Fragment[] fragments;
     private int FRAGMENT_NOW=1;
@@ -59,7 +60,7 @@ public class TeacherMainActivity extends AppCompatActivity {
     }
     private void ini(){
         fragment_home=new MainMenu_HomeFragment();
-        fragment_function=new MainMenu_FunctionFragment();
+        fragment_function=new Teacher_FuctionFragment();
         fragment_me=new MainMenu_MeFragment();
     }
     private void replaceFragment(android.support.v4.app.Fragment fragment){

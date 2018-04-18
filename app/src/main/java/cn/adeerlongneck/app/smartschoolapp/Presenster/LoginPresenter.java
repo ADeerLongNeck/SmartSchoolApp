@@ -1,11 +1,14 @@
 package cn.adeerlongneck.app.smartschoolapp.Presenster;
 
 import android.util.Log;
-import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.adeerlongneck.app.smartschoolapp.Model.userModel;
+import cn.adeerlongneck.app.smartschoolapp.MyApplication;
 import cn.adeerlongneck.app.smartschoolapp.Utility.HttpUtil;
 import cn.adeerlongneck.app.smartschoolapp.View.LoginView;
 
@@ -22,37 +25,6 @@ public class LoginPresenter extends BasePresenter{
     public LoginPresenter(LoginView view){
         loginView=view;
     }
-
-    public void isRegister(String account, final int i){
-        prama1= new HashMap<String,String>();
-        prama1.put("stuid",account);
-
-        HttpUtil httpUtil=new HttpUtil(new HttpUtil.HttpResponse() {
-            @Override
-            public void onSuccess(Object object) {
-                String res=object.toString();
-
-                if(res.equals("1")){
-                    Log.d("1111111111",res);
-                    loginView.hideDialog();
-                    loginView.isRegister(i);
-                }
-                if(res.equals("0")){
-                    loginView.hideDialog();
-                    loginView.notRegister();
-                }
-
-            }
-
-            @Override
-            public void onFail(String error) {
-                loginView.hideDialog();
-                loginView.loginFail("请检查网络连接");
-            }
-        });
-    httpUtil.sendPostHttp("http://192.168.6.46/isRegister2.php",prama1);
-    }
-
     public void login(final String account, String password){
         prama2= new HashMap<String,String>();
         prama2.put("stuid",account);
@@ -66,8 +38,7 @@ public class LoginPresenter extends BasePresenter{
 
                    getUserInfo(account);
 
-                    loginView.hideDialog();
-                    loginView.loginSuccess();
+
                 }
                 if (res.equals("0")) {
                     loginView.hideDialog();
@@ -76,7 +47,7 @@ public class LoginPresenter extends BasePresenter{
                 else
                 {
                     loginView.hideDialog();
-                    loginView.loginFail("登陆失败，请检查账号密码");
+
                 }
             }
             @Override
@@ -93,23 +64,42 @@ public  void getUserInfo(String stuid){
         HttpUtil httpUtil =new HttpUtil(new HttpUtil.HttpResponse() {
             @Override
             public void onSuccess(Object object) {
-
-                Log.d(object.toString(),"111111-------");
+                Log.d("11","111111111111111---------------------------------------------"+object.toString());
+                Log.d("111","111111111111111-------");
+               getCodeFromJson(object.toString());
 
             }
 
             @Override
             public void onFail(String error) {
-
+                Log.d("22","22222222222----------------------------------------------------------------");
             }
         });
-
-        httpUtil .sendPostHttp("http://www.adeerlongneck.cn/smartschool/getuserinfo.php",map);
-
-
-
+        httpUtil .sendPostHttp("http://www.adeerlongneck.cn:8000/Getuserinfo",map);
 }
 
+public String getCodeFromJson(String string){
+    String res=null;
 
+    Gson gson=new Gson();
+    userModel userinfo=gson.fromJson(string, userModel.class);
+    String t=userinfo.getIs_teacher();
+    Log.d("00000000000000",userinfo.getIs_teacher());
+
+if(t.equals("1")){
+
+    loginView.hideDialog();
+    loginView.loginSuccess(1,userinfo.getRealname(),userinfo.getStuid());
+}if(t.equals("0")){
+        loginView.hideDialog();
+        loginView.loginSuccess(0,userinfo.getRealname(), userinfo.getStuid());
+
+    }
+else{
+    loginView.hideDialog();
+}
+
+    return  res;
+}
 
 }

@@ -21,6 +21,8 @@ import com.isnc.facesdk.common.SDKConfig;
 
 import cn.adeerlongneck.app.smartschoolapp.Activity.MainActivity;
 import cn.adeerlongneck.app.smartschoolapp.Activity.MainMenuActivity;
+import cn.adeerlongneck.app.smartschoolapp.Activity.TeacherMainActivity;
+import cn.adeerlongneck.app.smartschoolapp.MyApplication;
 import cn.adeerlongneck.app.smartschoolapp.Presenster.LoginPresenter;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.ClearEditText;
@@ -102,20 +104,20 @@ else   idLogin();
     *
     * 人脸登陆，，暂时取消该功能
     * */
-    private void faceLogin(){
-        //TODO
-        startFaceLogin();
-
-
-        if (ed_account.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(),"请输入学号后继续",Toast.LENGTH_SHORT).show();
-            //学号为空
-        }else {
-            // p
-            loginPresenter.isRegister(ed_account.getText().toString(),2);
-            showDialog();
-        }
-    }
+//    private void faceLogin(){
+//        //TODO
+//        startFaceLogin();
+//
+//
+//        if (ed_account.getText().toString().isEmpty()){
+//            Toast.makeText(getActivity(),"请输入学号后继续",Toast.LENGTH_SHORT).show();
+//            //学号为空
+//        }else {
+//            // p
+//            loginPresenter.isRegister(ed_account.getText().toString(),2);
+//            showDialog();
+//        }
+//    }
 
 
 
@@ -144,11 +146,26 @@ else   idLogin();
     }
 
     @Override
-    public void loginSuccess() {
-        Toast.makeText(getActivity(),"登陆成功",Toast.LENGTH_SHORT).show();
-        Intent intent =new Intent(getActivity(),MainMenuActivity.class);
-        startActivity(intent);
+    public void loginSuccess(int code, String name, String mid) {
+        MyApplication application = (MyApplication)getActivity().getApplicationContext();
+        application.setStuid(mid);
+        application.setName(name);
+
+        if(code==0){
+            Toast.makeText(getActivity(),"登陆成功",Toast.LENGTH_SHORT).show();
+            Intent intent =new Intent(getActivity(),MainMenuActivity.class);
+            startActivity(intent);
+
+        }if(code==1){
+            Toast.makeText(getActivity(),"登陆成功,欢迎"+name+"老师",Toast.LENGTH_SHORT).show();
+            Intent intent =new Intent(getActivity(),TeacherMainActivity.class);
+            startActivity(intent);
+        }
     }
+
+
+
+
 
     @Override
     public void showDialog() {

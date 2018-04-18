@@ -8,9 +8,7 @@ public class userModel {
     String realname;
     String nickname;
     String password;
-    String phonenumber;
-    String stuid;
-    String classid;
+    String phone;
 
     public String getRealname() {
         return realname;
@@ -36,12 +34,20 @@ public class userModel {
         this.password = password;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getFace() {
+        return face;
+    }
+
+    public void setFace(String face) {
+        this.face = face;
     }
 
     public String getStuid() {
@@ -60,12 +66,12 @@ public class userModel {
         this.classid = classid;
     }
 
-    public boolean isstu() {
-        return isstu;
+    public String getIs_teacher() {
+        return is_teacher;
     }
 
-    public void setIsstu(boolean isstu) {
-        this.isstu = isstu;
+    public void setIs_teacher(String is_teacher) {
+        this.is_teacher = is_teacher;
     }
 
     public String getAge() {
@@ -76,15 +82,11 @@ public class userModel {
         this.age = age;
     }
 
-    public boolean isSex() {
-        return sex;
-    }
-
-    public void setSex(boolean sex) {
-        this.sex = sex;
-    }
-
-    boolean isstu;
+    String face;
+    String stuid;
+    String classid;
+    String is_teacher;
     String age;
-    boolean sex;
+
+
 }

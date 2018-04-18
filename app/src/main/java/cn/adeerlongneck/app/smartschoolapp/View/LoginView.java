@@ -8,7 +8,7 @@ public interface LoginView {
   void hideText();
   void showText();
   void loginFail(String error);
-  void loginSuccess();
+  void loginSuccess(int code,String name,String mid);
   void showDialog();
   void hideDialog();
   void notRegister();
