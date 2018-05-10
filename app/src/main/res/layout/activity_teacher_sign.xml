@@ -1,19 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.adeerlongneck.app.smartschoolapp.Activity.SignInActivity">
+    android:background="@drawable/bgbg"
 
-    <include layout="@layout/content_teacher_sign" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+    android:orientation="vertical"
+    tools:context="cn.adeerlongneck.app.smartschoolapp.Activity.SignActivity">
 
-</android.support.design.widget.CoordinatorLayout>
+    <include layout="@layout/toolbar"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="我的课程"
+            android:textSize="20sp"
+            android:typeface="sans" />
+
+        <Button
+            android:id="@+id/ref"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="刷新"
+            android:textSize="10sp"
+
+            />
+
+        <Button
+            android:id="@+id/signhistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="签到记录"
+            android:textSize="10sp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:background="#868686" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

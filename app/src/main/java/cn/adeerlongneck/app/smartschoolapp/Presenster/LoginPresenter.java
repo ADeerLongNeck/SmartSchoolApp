@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.adeerlongneck.app.smartschoolapp.Model.userModel;
-import cn.adeerlongneck.app.smartschoolapp.MyApplication;
 import cn.adeerlongneck.app.smartschoolapp.Utility.HttpUtil;
 import cn.adeerlongneck.app.smartschoolapp.View.LoginView;
 
@@ -58,7 +57,8 @@ public class LoginPresenter extends BasePresenter{
         });
         httpUtil.sendPostHttp("http://www.adeerlongneck.cn/smartschool/login.php",prama2);
     }
-public  void getUserInfo(String stuid){
+
+    public void getUserInfo(final String stuid) {
         Map<String,String> map =new HashMap<>();
         map.put("stuid",stuid);
         HttpUtil httpUtil =new HttpUtil(new HttpUtil.HttpResponse() {
@@ -72,10 +72,10 @@ public  void getUserInfo(String stuid){
 
             @Override
             public void onFail(String error) {
-                Log.d("22","22222222222----------------------------------------------------------------");
+                Log.d("22", "22222222222----------------------------------------------------------------" + stuid + error);
             }
         });
-        httpUtil .sendPostHttp("http://www.adeerlongneck.cn:8000/Getuserinfo",map);
+        httpUtil.sendPostHttp("http://www.adeerlongneck.cn:8000/Getuserinfo", map);
 }
 
 public String getCodeFromJson(String string){
@@ -90,6 +90,7 @@ if(t.equals("1")){
 
     loginView.hideDialog();
     loginView.loginSuccess(1,userinfo.getRealname(),userinfo.getStuid());
+
 }if(t.equals("0")){
         loginView.hideDialog();
         loginView.loginSuccess(0,userinfo.getRealname(), userinfo.getStuid());

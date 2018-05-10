@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.adeerlongneck.app.smartschoolapp.Activity.CreatCourseActivity;
+import cn.adeerlongneck.app.smartschoolapp.Activity.TeacherSignActivity;
 import cn.adeerlongneck.app.smartschoolapp.R;
 
 /**
@@ -17,6 +18,7 @@ import cn.adeerlongneck.app.smartschoolapp.R;
 
 public class Teacher_FuctionFragment extends Fragment {
     CardView creatcourse;
+    CardView sign;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,6 +30,16 @@ public class Teacher_FuctionFragment extends Fragment {
 
     private void iniViews(View view) {
         creatcourse = (view).findViewById(R.id.fun_card_creat);
+        sign = (view).findViewById(R.id.sign);
+        sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TeacherSignActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         creatcourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

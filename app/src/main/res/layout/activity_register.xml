@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
-    <LinearLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     >
+    android:background="@drawable/bgbg"
+    android:orientation="vertical">
 
         <include layout="@layout/toolbar"></include>
 
@@ -29,16 +25,16 @@
                 android:textSize="20dp" />
 
 <ImageView
+    android:id="@+id/img"
     android:layout_width="40dp"
     android:layout_height="40dp"
-    android:id="@+id/img"
     />
         </LinearLayout>
 
         <LinearLayout
-        android:layout_weight="1.8"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1.8">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -117,14 +113,14 @@
                         android:layout_height="match_parent">
 
                         <cn.adeerlongneck.app.smartschoolapp.Utility.ClearEditText
-                            android:maxLines="1"
+                            android:id="@+id/ed_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
                             android:hint="密码"
-                            android:id="@+id/ed_password"
+                            android:maxLines="1"
                             android:textSize="15dp" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -142,7 +138,6 @@
                         android:layout_height="match_parent">
 
                         <cn.adeerlongneck.app.smartschoolapp.Utility.ClearEditText
-                            android:maxLines="1"
                             android:id="@+id/ed_phonenumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -150,6 +145,7 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
                             android:hint="手机号"
+                            android:maxLines="1"
                             android:textSize="15dp" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -174,13 +170,13 @@
 
                             <cn.adeerlongneck.app.smartschoolapp.Utility.ClearEditText
                                 android:id="@+id/ed_yzm"
-                                android:lines="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginRight="16dp"
                                 android:hint="验证码"
+                                android:lines="1"
                                 android:textSize="15dp" />
 
                         </android.support.design.widget.TextInputLayout>
@@ -216,21 +212,21 @@
 
     <LinearLayout
 
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="4.5">
+        android:layout_weight="4.5"
+        android:orientation="horizontal">
 
             <Button
-                android:text="开始刷脸绑定账号"
-                android:textColor="#ffffff"
                 android:id="@+id/bt_startface"
-                android:background="?attr/colorPrimary"
-                android:layout_marginRight="36dp"
-                android:layout_marginLeft="36dp"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="36dp"
+                android:layout_marginRight="36dp"
+                android:background="?attr/colorPrimary"
+                android:text="开始刷脸绑定账号"
+                android:textColor="#ffffff" />
 
 
 
