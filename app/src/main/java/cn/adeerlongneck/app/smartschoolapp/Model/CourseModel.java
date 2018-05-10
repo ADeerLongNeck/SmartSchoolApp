@@ -11,6 +11,14 @@ public class CourseModel {
     String info;
     String id;
 
+    public CourseModel(String name, String info) {
+        this.name = name;
+        this.info = info;
+    }
+
+    public CourseModel() {
+
+    }
     public String getTeacher() {
         return teacher;
     }
