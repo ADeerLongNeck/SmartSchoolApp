@@ -7,6 +7,7 @@ android {
         applicationId "cn.adeerlongneck.app.smartschoolapp"
         minSdkVersion 15
         targetSdkVersion 26
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -45,5 +46,8 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-vector-drawable:26.+'
     compile 'com.google.code.gson:gson:2.7'
+
+    compile 'com.amap.api:location:latest.integration'
+    compile 'com.amap.api:3dmap:latest.integration'
     testCompile 'junit:junit:4.12'
 }

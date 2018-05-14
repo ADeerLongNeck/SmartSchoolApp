@@ -1,10 +1,13 @@
 package cn.adeerlongneck.app.smartschoolapp.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.adeerlongneck.app.smartschoolapp.Activity.CreateSignActivity;
 import cn.adeerlongneck.app.smartschoolapp.Model.CourseModel;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.HttpUtil;
@@ -26,9 +30,10 @@ public class TeacherSignAdapter extends RecyclerView.Adapter<TeacherSignAdapter.
     TeacherSignView mmmview;
     CourseModel mcour;
     int pos;
-
-    public TeacherSignAdapter(List<CourseModel> list, TeacherSignView view) {
+Context context;
+    public TeacherSignAdapter(List<CourseModel> list, TeacherSignView view,Context context) {
         this.list = list;
+        this.context=context;
         this.mmmview = view;
     }
 
@@ -54,6 +59,13 @@ public class TeacherSignAdapter extends RecyclerView.Adapter<TeacherSignAdapter.
             @Override
             public void onClick(View view) {
                 delClass(courseModel.getId());
+            }
+        });
+        holder.bt_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, CreateSignActivity.class);
+                context.startActivity(intent);
             }
         });
         holder.tx_coursename.setText(courseModel.getName());
@@ -94,12 +106,16 @@ public class TeacherSignAdapter extends RecyclerView.Adapter<TeacherSignAdapter.
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tx_coursename;
         TextView tx_courseinfo;
+        Button bt_create;
+        Button bt_history;
         ImageView im_del;
         View mview;
 
         public ViewHolder(View view) {
             super(view);
             mview = view;
+            bt_create=(Button)view.findViewById(R.id.button24);
+            bt_history=(Button)view.findViewById(R.id.button23);
             tx_coursename = (TextView) view.findViewById(R.id.textView6);
             tx_courseinfo = (TextView) view.findViewById(R.id.textView7);
             im_del = (ImageView) view.findViewById(R.id.del);

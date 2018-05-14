@@ -100,7 +100,7 @@ public class TeacherSignActivity extends AppCompatActivity implements TeacherSig
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rec1);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        TeacherSignAdapter teacherSignAdapter = new TeacherSignAdapter(list, this);
+        TeacherSignAdapter teacherSignAdapter = new TeacherSignAdapter(list, this,this);
         recyclerView.setAdapter(teacherSignAdapter);
 
 
