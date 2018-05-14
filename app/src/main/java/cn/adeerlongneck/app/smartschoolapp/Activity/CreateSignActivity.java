@@ -18,6 +18,7 @@ import cn.adeerlongneck.app.smartschoolapp.Utility.LocationUtil;
 
 public class CreateSignActivity extends AppCompatActivity {
 NumberPicker numberPicker;
+String git;
     MapView mMapView = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
