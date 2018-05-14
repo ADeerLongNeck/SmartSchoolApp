@@ -29,7 +29,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name = ".MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -123,7 +123,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.AddCourseActivity" />
         <activity android:name=".Activity.TeacherSignActivity" />
-        <activity android:name=".Activity.CreatCourseActivity"></activity>
+        <activity android:name=".Activity.CreatCourseActivity" />
+        <activity android:name=".Activity.CreateSignActivity"></activity>
     </application>
 
 </manifest>
