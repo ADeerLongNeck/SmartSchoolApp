@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+
+    android:layout_height="150dp"
+
+    >
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="18dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#6effa5a5">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="25dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
+                android:background="#40cbfd" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/view"
+                android:layout_marginLeft="54dp"
+                android:layout_marginStart="54dp"
+                android:layout_toEndOf="@+id/view"
+                android:layout_toRightOf="@+id/view"
+                android:text="示例课程"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView6"
+                android:layout_alignStart="@+id/textView6"
+                android:layout_below="@+id/textView6"
+                android:layout_marginTop="19dp"
+                android:text="本课程吧啦吧啦啦啦啦" />
+
+            <ImageView
+                android:id="@+id/del"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_marginEnd="9dp"
+                android:layout_marginRight="9dp"
+                android:src="@drawable/cha" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/button24"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/cardView2"
+        android:layout_alignLeft="@+id/cardView2"
+        android:layout_alignStart="@+id/cardView2"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+        android:background="@drawable/color_greentoblue"
+        android:text="开始签到"
+        android:textSize="10sp" />
+
+
+    <Button
+        android:id="@+id/button23"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/cardView2"
+        android:layout_alignLeft="@+id/cardView2"
+        android:layout_alignStart="@+id/cardView2"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginStart="200dp"
+        android:background="@drawable/color_yellowtowhiteblue"
+        android:text="签到记录"
+        android:textSize="10sp" />
+
+</RelativeLayout>
+
+
+
+
+
