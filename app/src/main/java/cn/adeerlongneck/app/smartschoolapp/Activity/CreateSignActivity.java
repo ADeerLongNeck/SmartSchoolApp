@@ -1,11 +1,19 @@
 package cn.adeerlongneck.app.smartschoolapp.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
@@ -13,29 +21,53 @@ import com.amap.api.maps.model.MyLocationStyle;
 
 import java.sql.Time;
 
+import cn.adeerlongneck.app.smartschoolapp.Presenster.CreateSignPresenter;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.LocationUtil;
+import cn.adeerlongneck.app.smartschoolapp.View.CreateSignView;
 
-public class CreateSignActivity extends AppCompatActivity {
+public class CreateSignActivity extends AppCompatActivity implements CreateSignView{
 NumberPicker numberPicker;
+CreateSignPresenter createSignPresenter;
+Button bt_post;
 String git;
+    String courseid;
+    String time="300";
+    String jing;
+    String wei;
     MapView mMapView = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_create_sign);
+        LocationUtil();
+
     ini();
         mMapView.onCreate(savedInstanceState);
 map();
-        LocationUtil locationUtil=new LocationUtil(this);
-        locationUtil.location();
+
 
 
     }
     public void ini(){
+        Intent intent = getIntent();
+        //从Intent当中根据key取得value
+        if (intent != null) {
+            courseid = intent.getStringExtra("courseid");
+        }
+        createSignPresenter =new CreateSignPresenter();
         mMapView = (MapView) findViewById(R.id.map);
         numberPicker=(NumberPicker)findViewById(R.id.numberPicker);
+        bt_post=(Button)findViewById(R.id.post);
+        bt_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            createSignPresenter.postdata(courseid,time,jing,wei);
+                Log.d("ddd","-----------"+jing+"----"+wei+"----"+time+"----"+courseid);
+            }
+        });
         numberPirckerOpinion();
 
     }
@@ -94,7 +126,63 @@ map();
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 //得到选择结果
                 Log.d("2",numbers[picker.getValue()-1] );
+             //   time=numbers[picker.getValue()-1];
+
             }
         });
     }
+
+    @Override
+    public void bind(String jing, String wei) {
+        this.jing=jing;
+        this.wei=wei;
+    }
+
+
+    public AMapLocationClient mLocationClient = null;
+    public AMapLocationClientOption mLocationOption = null;
+    //声明定位回调监听器
+    public AMapLocationListener mLocationListener = new AMapLocationListener() {
+        @Override
+        public void onLocationChanged(AMapLocation amapLocation) {
+            if (amapLocation != null) {
+                if (amapLocation.getErrorCode() == 0) {
+//可在其中解析amapLocation获取相应内容。
+                    Log.d("ddd",amapLocation.getAddress()+"纬度"+amapLocation.getLatitude()+"经度"+amapLocation.getLongitude());
+                    jing= String.valueOf(amapLocation.getLongitude());
+                    wei=String.valueOf(amapLocation.getLatitude());
+                } else {
+                    //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                    Log.e("AmapError", "location Error, ErrCode:"
+                            + amapLocation.getErrorCode() + ", errInfo:"
+                            + amapLocation.getErrorInfo());
+                }
+            }
+        }
+    };
+    public void LocationUtil() {
+
+
+        mLocationClient = new AMapLocationClient(this);
+//设置定位回调监听
+        mLocationClient.setLocationListener(mLocationListener);
+        mLocationOption = new AMapLocationClientOption();
+        option();
+
+        mLocationClient.setLocationOption(mLocationOption);
+//启动定位
+        location();
+    }
+
+    public void location(){
+        mLocationClient.startLocation();
+    }
+    public void option() {
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        mLocationOption.setOnceLocation(true);
+//获取最近3s内精度最高的一次定位结果：
+//设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
+        mLocationOption.setOnceLocationLatest(true);
+    }
+
 }

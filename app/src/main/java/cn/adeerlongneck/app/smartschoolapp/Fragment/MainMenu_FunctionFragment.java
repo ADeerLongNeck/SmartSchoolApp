@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import cn.adeerlongneck.app.smartschoolapp.Activity.JiaoWuActivity;
 import cn.adeerlongneck.app.smartschoolapp.Activity.SignActivity;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.MyOnTouch;
@@ -20,6 +21,7 @@ import cn.adeerlongneck.app.smartschoolapp.Utility.MyOnTouch;
 public class MainMenu_FunctionFragment extends Fragment {
         CardView cardView_qiandao;
         CardView cardView_sign;
+        CardView cardView_jiaowu;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mainmenu_fragment_function, container, false);
@@ -30,11 +32,13 @@ public class MainMenu_FunctionFragment extends Fragment {
     private void iniViews(View view){
 
         cardView_sign=(CardView)view.findViewById(R.id.sign) ;
+        cardView_jiaowu=(CardView)view.findViewById(R.id.jiaowu) ;
         cardView_qiandao=(CardView)view.findViewById(R.id.fun_card_qiandao);
+
         cardView_qiandao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"不要点我了，，",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"不要点我了，~~暂时未开放",Toast.LENGTH_SHORT).show();
             }
         });
         cardView_sign.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +46,13 @@ public class MainMenu_FunctionFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), SignActivity.class);
                 startActivity(intent);
+            }
+        });
+        cardView_jiaowu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+Intent intent=new Intent(getActivity(), JiaoWuActivity.class);
+startActivity(intent);
             }
         });
 

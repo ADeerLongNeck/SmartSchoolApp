@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.adeerlongneck.app.smartschoolapp.Activity.CreatCourseActivity;
+import cn.adeerlongneck.app.smartschoolapp.Activity.JiaoWuActivity;
 import cn.adeerlongneck.app.smartschoolapp.Activity.TeacherSignActivity;
 import cn.adeerlongneck.app.smartschoolapp.R;
 
@@ -19,7 +20,7 @@ import cn.adeerlongneck.app.smartschoolapp.R;
 public class Teacher_FuctionFragment extends Fragment {
     CardView creatcourse;
     CardView sign;
-
+    CardView cardView_jiaowu;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.teacher_fragment_function, container, false);
@@ -30,6 +31,7 @@ public class Teacher_FuctionFragment extends Fragment {
 
     private void iniViews(View view) {
         creatcourse = (view).findViewById(R.id.fun_card_creat);
+        cardView_jiaowu=(CardView)view.findViewById(R.id.jiaowu) ;
         sign = (view).findViewById(R.id.sign);
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +50,13 @@ public class Teacher_FuctionFragment extends Fragment {
             }
         });
 
-
+        cardView_jiaowu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), JiaoWuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

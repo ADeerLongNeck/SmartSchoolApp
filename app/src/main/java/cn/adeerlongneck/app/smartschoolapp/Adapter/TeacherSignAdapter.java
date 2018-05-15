@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.Map;
 
 import cn.adeerlongneck.app.smartschoolapp.Activity.CreateSignActivity;
+import cn.adeerlongneck.app.smartschoolapp.Activity.HistoryActivity;
 import cn.adeerlongneck.app.smartschoolapp.Model.CourseModel;
+import cn.adeerlongneck.app.smartschoolapp.Model.HistoryModel;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.HttpUtil;
 import cn.adeerlongneck.app.smartschoolapp.View.TeacherSignView;
@@ -65,6 +67,15 @@ Context context;
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, CreateSignActivity.class);
+                intent.putExtra("courseid",courseModel.getId());
+                context.startActivity(intent);
+            }
+        });
+        holder.bt_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,HistoryActivity.class);
+                intent.putExtra("courseid",courseModel.getId());
                 context.startActivity(intent);
             }
         });

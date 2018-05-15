@@ -1,6 +1,7 @@
 package cn.adeerlongneck.app.smartschoolapp.Activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,8 @@ public class CreatCourseActivity extends AppCompatActivity implements CreatCours
     EditText name;
 
     Button submit;
+
+
     ProgressDialog progressDialog;
 
     @Override

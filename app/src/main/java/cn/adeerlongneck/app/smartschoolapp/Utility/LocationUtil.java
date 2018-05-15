@@ -64,9 +64,10 @@ public class LocationUtil {
             mLocationClient.setLocationListener(mLocationListener);
             mLocationOption = new AMapLocationClientOption();
             option();
+
             mLocationClient.setLocationOption(mLocationOption);
 //启动定位
-
+location();
         }
 
         public void location(){
