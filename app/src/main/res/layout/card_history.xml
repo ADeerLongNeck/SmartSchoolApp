@@ -13,15 +13,22 @@
         app:cardCornerRadius="10dp"
         android:layout_margin="2dp"
         >
-<TextView
-    android:id="@+id/random"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="==============="
-    android:gravity="center"
-    android:layout_gravity="center"
+        <LinearLayout
+            android:background="@drawable/color_greentoblue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    />
+            <TextView
+                android:id="@+id/random"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="==============="
+                android:gravity="center"
+                android:layout_gravity="center"
+
+                />
+        </LinearLayout>
+
 
     </android.support.v7.widget.CardView>
 

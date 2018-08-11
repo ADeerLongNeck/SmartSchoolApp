@@ -47,7 +47,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+      //  this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         ini();

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.adeerlongneck.app.smartschoolapp.Activity.CreateSignActivity;
+import cn.adeerlongneck.app.smartschoolapp.Activity.StudentStartSignActivity;
 import cn.adeerlongneck.app.smartschoolapp.Model.CourseModel;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.HttpUtil;
@@ -64,7 +65,7 @@ public class StudentSignAdapter extends RecyclerView.Adapter<StudentSignAdapter.
         holder.bt_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, CreateSignActivity.class);
+                Intent intent=new Intent(context, StudentStartSignActivity.class);
                 context.startActivity(intent);
             }
         });

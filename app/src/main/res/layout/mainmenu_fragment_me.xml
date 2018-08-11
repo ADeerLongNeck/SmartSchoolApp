@@ -161,83 +161,13 @@
             android:layout_marginLeft="65dp"
             android:background="#c1c1c1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:foreground="?attr/selectableItemBackground"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9"
-                    android:orientation="horizontal">
-
-                    <ImageView
-
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_jian" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="65dp"
             android:background="#c1c1c1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:foreground="?attr/selectableItemBackground"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9"
-                    android:orientation="horizontal">
-
-                    <ImageView
-
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_jian" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
 
-</LinearLayout>

@@ -154,7 +154,8 @@
         <activity android:name=".Activity.CreateSignActivity" />
         <activity android:name=".Activity.HistoryActivity" />
         <activity android:name=".Activity.HistoryInfoActivity" />
-        <activity android:name=".Activity.JiaoWuActivity"></activity>
+        <activity android:name=".Activity.JiaoWuActivity" />
+        <activity android:name=".Activity.StudentStartSignActivity"></activity>
     </application>
 
 </manifest>
