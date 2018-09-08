@@ -20,6 +20,7 @@ import cn.adeerlongneck.app.smartschoolapp.Activity.HistoryActivity;
 import cn.adeerlongneck.app.smartschoolapp.Activity.HistoryInfoActivity;
 import cn.adeerlongneck.app.smartschoolapp.Model.CourseModel;
 import cn.adeerlongneck.app.smartschoolapp.Model.HistoryModel;
+
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.HttpUtil;
 import cn.adeerlongneck.app.smartschoolapp.View.TeacherSignView;
