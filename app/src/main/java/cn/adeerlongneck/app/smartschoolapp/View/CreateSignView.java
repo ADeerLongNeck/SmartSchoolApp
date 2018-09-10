@@ -6,4 +6,6 @@ package cn.adeerlongneck.app.smartschoolapp.View;
 
 public interface CreateSignView {
     void bind(String jing,String wei);
+    void success(String random);
+    void fail();
 }

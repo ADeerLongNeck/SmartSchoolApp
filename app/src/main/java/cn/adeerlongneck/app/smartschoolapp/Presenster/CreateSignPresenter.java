@@ -4,13 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.adeerlongneck.app.smartschoolapp.Utility.HttpUtil;
+import cn.adeerlongneck.app.smartschoolapp.View.CreateSignView;
 
 /**
  * Created by 长脖鹿 on 2018/5/15.
  */
 
 public class CreateSignPresenter {
+CreateSignView createSignView;
 
+public CreateSignPresenter(CreateSignView createSignView){
+
+    this.createSignView=createSignView;
+}
 
 
     public void postdata(String courseid, String time,String jing,String wei) {
@@ -25,8 +31,11 @@ public class CreateSignPresenter {
             @Override
             public void onSuccess(Object object) {
                 String res = object.toString();
-                if (res.equals("1")) {
+                System.out.println("============================RANDOM"+res);
+                if (res.equals("0")) {
 
+                }else {
+                    createSignView.success(res);
                 }
 
             }

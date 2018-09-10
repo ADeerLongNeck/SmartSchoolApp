@@ -56,7 +56,7 @@ map();
         if (intent != null) {
             courseid = intent.getStringExtra("courseid");
         }
-        createSignPresenter =new CreateSignPresenter();
+        createSignPresenter =new CreateSignPresenter(this);
         mMapView = (MapView) findViewById(R.id.map);
         numberPicker=(NumberPicker)findViewById(R.id.numberPicker);
         bt_post=(Button)findViewById(R.id.post);
@@ -136,6 +136,18 @@ map();
     public void bind(String jing, String wei) {
         this.jing=jing;
         this.wei=wei;
+    }
+
+    @Override
+    public void success(String random) {
+        Intent intent=new Intent(this,HistoryInfoActivity.class);
+        intent.putExtra("random",random);
+        startActivity(intent);
+    }
+
+    @Override
+    public void fail() {
+
     }
 
 
