@@ -155,7 +155,8 @@
         <activity android:name=".Activity.HistoryActivity" />
         <activity android:name=".Activity.HistoryInfoActivity" />
         <activity android:name=".Activity.JiaoWuActivity" />
-        <activity android:name=".Activity.StudentStartSignActivity"></activity>
+        <activity android:name=".Activity.StudentStartSignActivity" />
+        <activity android:name=".Activity.TicketActivity"></activity>
     </application>
 
 </manifest>

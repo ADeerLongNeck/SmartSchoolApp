@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import cn.adeerlongneck.app.smartschoolapp.Activity.JiaoWuActivity;
 import cn.adeerlongneck.app.smartschoolapp.Activity.SignActivity;
+import cn.adeerlongneck.app.smartschoolapp.Activity.TicketActivity;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.MyOnTouch;
 
@@ -22,6 +23,7 @@ public class MainMenu_FunctionFragment extends Fragment {
         CardView cardView_qiandao;
         CardView cardView_sign;
         CardView cardView_jiaowu;
+        CardView cardView_ticket;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mainmenu_fragment_function, container, false);
@@ -34,6 +36,8 @@ public class MainMenu_FunctionFragment extends Fragment {
         cardView_sign=(CardView)view.findViewById(R.id.sign) ;
         cardView_jiaowu=(CardView)view.findViewById(R.id.jiaowu) ;
         cardView_qiandao=(CardView)view.findViewById(R.id.fun_card_qiandao);
+        cardView_ticket=(CardView)view.findViewById(R.id.ticket);
+
 
         cardView_qiandao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +55,18 @@ public class MainMenu_FunctionFragment extends Fragment {
         cardView_jiaowu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-Intent intent=new Intent(getActivity(), JiaoWuActivity.class);
-startActivity(intent);
+                Intent intent=new Intent(getActivity(), JiaoWuActivity.class);
+                startActivity(intent);
             }
         });
+        cardView_ticket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), TicketActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }

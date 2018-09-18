@@ -13,6 +13,7 @@ import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.View.AddCourseView;
 
 public class AddCourseActivity extends AppCompatActivity implements AddCourseView {
+
     EditText editText;
     Button button;
     @Override

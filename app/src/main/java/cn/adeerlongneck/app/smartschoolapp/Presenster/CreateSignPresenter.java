@@ -1,5 +1,8 @@
 package cn.adeerlongneck.app.smartschoolapp.Presenster;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +36,7 @@ public CreateSignPresenter(CreateSignView createSignView){
                 String res = object.toString();
                 System.out.println("============================RANDOM"+res);
                 if (res.equals("0")) {
+                    Toast.makeText((Context) createSignView,"shibai",Toast.LENGTH_SHORT).show();
 
                 }else {
                     createSignView.success(res);

@@ -2,7 +2,10 @@ package cn.adeerlongneck.app.smartschoolapp.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +44,10 @@ String git;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_create_sign);
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String []{android.Manifest.permission.ACCESS_COARSE_LOCATION},1);
+        }
+
         LocationUtil();
 
     ini();
@@ -66,6 +73,8 @@ map();
 
             createSignPresenter.postdata(courseid,time,jing,wei);
                 Log.d("ddd","-----------"+jing+"----"+wei+"----"+time+"----"+courseid);
+
+
             }
         });
         numberPirckerOpinion();

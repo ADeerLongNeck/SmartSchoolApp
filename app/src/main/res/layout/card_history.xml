@@ -14,14 +14,23 @@
         android:layout_margin="2dp"
         >
         <LinearLayout
+            android:gravity="center"
             android:background="@drawable/color_greentoblue"
             android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="签到码:"
+                android:gravity="center"
+                android:layout_gravity="center"
 
+                />
             <TextView
                 android:id="@+id/random"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="==============="
                 android:gravity="center"
                 android:layout_gravity="center"

@@ -1,6 +1,9 @@
 package cn.adeerlongneck.app.smartschoolapp.Activity;
 
 import android.app.ProgressDialog;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +42,9 @@ public class StudentStartSignActivity extends AppCompatActivity {
         random = ed_random.getText().toString();
         MyApplication application = (MyApplication) this.getApplicationContext();
         stuid = application.getStuid();
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String []{android.Manifest.permission.ACCESS_COARSE_LOCATION},1);
+        }
         LocationUtil();
         showDialog();
         bt_sign.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +122,7 @@ public class StudentStartSignActivity extends AppCompatActivity {
                 String res = object.toString();
                 if (res.equals("1")) {
                     Toast.makeText(StudentStartSignActivity.this, "签到成功~", Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
                     Toast.makeText(StudentStartSignActivity.this, "签到失败~"+ object.toString(), Toast.LENGTH_SHORT).show();
                 }

@@ -28,7 +28,6 @@ public class AddCoursePresent {
             public void onSuccess(Object object) {
                 String res = object.toString();
                 if (res.equals("1")) {
-
                     addCourseView.success();
                 }
 

@@ -40,7 +40,7 @@ public class MainMenu_HomeFragment extends Fragment{
     WebView webView=(WebView)mview.findViewById(R.id.webView1);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://www.adeerlongneck.cn");
+        webView.loadUrl("https://www.baidu.com");
 
    }
 

@@ -1,6 +1,7 @@
 package cn.adeerlongneck.app.smartschoolapp.Activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,20 +28,34 @@ public class HistoryInfoActivity extends AppCompatActivity {
     String random;
     TextView tx_ying;
     TextView tx_shi;
+    TextView tx_ramdom;
     String yingdao;
     String xiandao;
+    Handler mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_info);
         tx_ying=(TextView)findViewById(R.id.yingdao);
         tx_shi=(TextView)findViewById(R.id.xiandao) ;
+        tx_ramdom=(TextView)findViewById(R.id.random);
         Intent intent = getIntent();
         //从Intent当中根据key取得value
         if (intent != null) {
             random = intent.getStringExtra("random");
         }
-        getData();
+        tx_ramdom.setText(random);
+        mHandler = new Handler();
+        mHandler.post(new Runnable() {
+            @Override
+            public void run()
+            {
+                // TODO Auto-generated method stub
+                getData();
+                mHandler.postDelayed(this, 2000);
+            }
+        });
+
 
     }
     public void getData() {

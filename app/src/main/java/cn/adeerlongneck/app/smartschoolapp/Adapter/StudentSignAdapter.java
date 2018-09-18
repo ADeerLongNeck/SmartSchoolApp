@@ -2,6 +2,9 @@ package cn.adeerlongneck.app.smartschoolapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,7 +68,8 @@ public class StudentSignAdapter extends RecyclerView.Adapter<StudentSignAdapter.
         holder.bt_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, StudentStartSignActivity.class);
+
+               Intent intent=new Intent(context, StudentStartSignActivity.class);
                 context.startActivity(intent);
             }
         });

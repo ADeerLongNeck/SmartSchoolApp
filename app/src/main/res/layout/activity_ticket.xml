@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="cn.adeerlongneck.app.smartschoolapp.Activity.HistoryActivity">
-
+    tools:context="cn.adeerlongneck.app.smartschoolapp.Activity.TicketActivity">
     <include layout="@layout/toolbar"/>
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rec1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+    <WebView
+        android:id="@+id/wb_ticket"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-</android.support.v7.widget.RecyclerView>
+    </WebView>
+
 </LinearLayout>
