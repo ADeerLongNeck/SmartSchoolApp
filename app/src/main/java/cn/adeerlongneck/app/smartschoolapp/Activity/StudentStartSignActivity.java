@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
@@ -57,7 +59,17 @@ public class StudentStartSignActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void setToolBar(){
+        ImageView im = (ImageView)findViewById(R.id.fanhui);
+        TextView tx_title=(TextView)findViewById(R.id.toolbar_title);
+        tx_title.setText("开始签到");
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
     public AMapLocationClient mLocationClient = null;
     public AMapLocationClientOption mLocationOption = null;
     //声明定位回调监听器

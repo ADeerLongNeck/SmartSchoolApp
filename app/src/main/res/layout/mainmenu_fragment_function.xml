@@ -181,7 +181,7 @@ android:id="@+id/jiaowu"
                     android:layout_alignParentStart="true"
                     android:layout_marginLeft="24dp"
                     android:layout_marginStart="24dp"
-                    android:src="@drawable/i_phone" />
+                    android:src="@drawable/fix" />
 
                 <TextView
                     android:id="@+id/tx_s"
@@ -193,7 +193,7 @@ android:id="@+id/jiaowu"
                     android:layout_marginEnd="18dp"
                     android:layout_marginRight="18dp"
                     android:layout_marginTop="18dp"
-                    android:text="教务系统"
+                    android:text="报修系统"
                     android:textColor="#878787"
                     android:textSize="20dp" />
 
@@ -206,7 +206,7 @@ android:id="@+id/jiaowu"
                     android:layout_below="@+id/tx_s"
                     android:layout_marginEnd="18dp"
                     android:layout_marginRight="18dp"
-                    android:text="Study" />
+                    android:text="fix" />
 
 
             </RelativeLayout>

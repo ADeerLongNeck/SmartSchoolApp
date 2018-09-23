@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -81,7 +82,18 @@ public class RegisterActivity extends AppCompatActivity implements RegisterActiv
         setContentView(R.layout.activity_register);
         registerPresenter =new RegisterPresenter(this,this);
         ini();
-
+setToolBar();
+    }
+    public void setToolBar(){
+        ImageView im = (ImageView)findViewById(R.id.fanhui);
+        TextView tx_title=(TextView)findViewById(R.id.toolbar_title);
+        tx_title.setText("注册");
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
     public void ini(){
         BmobSMS.initialize(this,"7326a6be68c5fe21196c69385f87d65b");//应用id

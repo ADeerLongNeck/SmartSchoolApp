@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.adeerlongneck.app.smartschoolapp.Model.CourseModel;
@@ -30,6 +32,18 @@ public class CreatCourseActivity extends AppCompatActivity implements CreatCours
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creat_course);
         ini();
+        setToolBar();
+    }
+    public void setToolBar(){
+        ImageView im = (ImageView)findViewById(R.id.fanhui);
+        TextView tx_title=(TextView)findViewById(R.id.toolbar_title);
+        tx_title.setText("创建课程");
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
     public void ini(){
        creatCoursePresenter=new CreatCoursePresenter(this);

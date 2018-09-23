@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -52,7 +54,7 @@ public class TeacherSignActivity extends AppCompatActivity implements TeacherSig
                 getData();
             }
         });
-
+        setToolBar();
 
     }
 
@@ -82,7 +84,17 @@ public class TeacherSignActivity extends AppCompatActivity implements TeacherSig
 
 
     }
-
+    public void setToolBar(){
+        ImageView im = (ImageView)findViewById(R.id.fanhui);
+        TextView tx_title=(TextView)findViewById(R.id.toolbar_title);
+        tx_title.setText("我的课程");
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
     public List<CourseModel> dealData(String data) {
         List<CourseModel> list = new ArrayList<>();
         Gson gson = new Gson();

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import cn.adeerlongneck.app.smartschoolapp.Activity.JiaoWuActivity;
 import cn.adeerlongneck.app.smartschoolapp.Activity.SignActivity;
+import cn.adeerlongneck.app.smartschoolapp.Activity.TiaoZaoActivity;
 import cn.adeerlongneck.app.smartschoolapp.Activity.TicketActivity;
 import cn.adeerlongneck.app.smartschoolapp.R;
 import cn.adeerlongneck.app.smartschoolapp.Utility.MyOnTouch;
@@ -42,7 +43,8 @@ public class MainMenu_FunctionFragment extends Fragment {
         cardView_qiandao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"不要点我了，~~暂时未开放",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), TiaoZaoActivity.class);
+                startActivity(intent);
             }
         });
         cardView_sign.setOnClickListener(new View.OnClickListener() {

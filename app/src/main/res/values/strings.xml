@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">啾咪</string>
+    <string name="app_name">格子校园</string>
     <drawable name="clr_normal">#00ffffff</drawable>
     <drawable name="clr_pressed">#b7991f</drawable>
     <string name="title_activity_main_menu">MainMenuActivity</string>
@@ -9,4 +9,11 @@
     <string name="ip1">172.16.219.102</string>
     <string name="title_activity_teacher_main">TeacherMainActivity</string>
     <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="encode_qrcode">生成二维码</string>
+
+    <string name="dencode_qrcode">扫描二维码</string>
+
+    <string name="code_text">请输入生成二维码的文本信息</string>
+
+    <string name="qrcodetext">这里显示扫描结果</string>
 </resources>

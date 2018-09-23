@@ -9,5 +9,19 @@
         app:showAsAction="always"
         app:contentInsetLeft="10dp"
          />
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/plus"
+        android:title="Add"
+        app:showAsAction="always"
+        app:contentInsetLeft="10dp"
+        />
+    <item
+        android:id="@+id/list"
+        android:icon="@drawable/list"
+        android:title="Add"
+        app:showAsAction="always"
+        app:contentInsetLeft="10dp"
+        />
 
 </menu>

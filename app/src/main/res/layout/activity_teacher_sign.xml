@@ -27,23 +27,17 @@
 
         <Button
             android:id="@+id/ref"
+            android:background="#4cd5ff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="150dp"
             android:text="刷新"
+            android:textColor="#fff"
             android:textSize="10sp"
 
             />
 
-        <Button
-            android:id="@+id/signhistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="签到记录"
-            android:textSize="10sp"
 
-            />
 
     </LinearLayout>
 

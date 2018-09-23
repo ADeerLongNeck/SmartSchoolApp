@@ -5,6 +5,6 @@ package cn.adeerlongneck.app.smartschoolapp.View;
  */
 
 public interface AddCourseView extends BaseView {
-
+void add(String courseid);
 
 }

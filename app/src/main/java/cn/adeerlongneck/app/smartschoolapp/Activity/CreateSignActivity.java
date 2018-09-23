@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -54,8 +55,20 @@ String git;
         mMapView.onCreate(savedInstanceState);
 map();
 
+setToolBar();
 
+    }
 
+    public void setToolBar(){
+        ImageView im = (ImageView)findViewById(R.id.fanhui);
+        TextView tx_title=(TextView)findViewById(R.id.toolbar_title);
+        tx_title.setText("创建签到");
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
     public void ini(){
         Intent intent = getIntent();

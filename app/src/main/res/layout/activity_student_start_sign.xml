@@ -30,6 +30,7 @@
         android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:text="签   到"
+            android:textColor="#fff"
             android:background="#2fc4ff"
             android:layout_below="@+id/ed_random"
             android:layout_marginTop="159dp" />
